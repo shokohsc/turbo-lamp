@@ -1,10 +1,13 @@
 FROM ubuntu:18.04
 
-RUN apt update
-RUN apt install openjdk-8-jre openjfx
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    openjdk-8-jre \
+    openjfx \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir /app
-ADD Launcher.jar /app/Launcher.jar
+ADD Launcher.jar /app
 WORKDIR /app
 
 CMD ["bash"]
